@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = nameInput.value.trim();
 
     if (name) {
-      popupText.innerHTML = `Halo ${name},<br>KELUAR OLAHRAGA ANJ.`;
+      popupText.innerHTML = `<span style="font-size:1.5em; font-weight:bold;">WOI ${name},<br>KELUAR OLAHRAGA ANJ.</span>`;
       popup.style.display = "flex";
     } else {
       popupText.textContent = "Silakan isi nama dan umur terlebih dahulu.";
