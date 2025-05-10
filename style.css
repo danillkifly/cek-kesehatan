@@ -35,6 +35,13 @@ h2 {
   color: #fff;
 }
 
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .aa {
   position: relative;
   width: 310px;
@@ -45,7 +52,7 @@ h2 {
 .aa label {
   position: absolute;
   top: 50%;
-  left: 5px;
+  left: 0;
   transform: translateY(-50%);
   font-size: 1em;
   color: #fff;
@@ -68,7 +75,14 @@ h2 {
   color: #fff;
 }
 
-button {
+.cek {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.cek button {
   width: 100%;
   height: 40px;
   background: #fff;
@@ -82,7 +96,7 @@ button {
   transition: 0.3s ease;
 }
 
-button:hover {
+.cek button:hover {
   background: transparent;
   color: #fff;
   border: 2px solid #fff;
@@ -96,4 +110,54 @@ button:hover {
   .aa {
     width: 290px;
   }
+}
+
+.popup {
+  position: fixed;
+  display: none; /* Awalnya disembunyikan */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes popupShow {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.popup-content {
+  margin-top: 50px;
+  background: #fff;
+  height: 260px;
+  padding: 100px 70px 100px 70px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: popupShow 0.3s ease;
+}
+
+.popup-content button {
+  margin-top: 60px;
+  padding: 10px 20px;
+  border: none;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 30px;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.popup-content button:hover {
+  background: transparent;
+  color: black;
+  border: 2px solid black;
 }
