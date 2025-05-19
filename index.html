@@ -1,45 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cek Kesehatan | Danill Kifly</title>
-
-    <link rel="stylesheet" href="style.css" />
+    <title>CekinAja</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Space Mono", monospace;
+        transition: background-color 0.3s, color 0.3s;
+        background-image: linear-gradient(
+          45deg,
+          transparent 74%,
+          rgba(0, 0, 0, 0.1) 75%
+        );
+        background-size: 50px 50px;
+      }
+      .dark-mode {
+        background-color: #1a1a1a;
+        color: white;
+      }
+    </style>
   </head>
-  <body>
-    <section>
-      <video autoplay muted loop id="bg-video">
-        <source src="1.mp4" type="video/mp4" />
-      </video>
+  <body id="body" class="text-black">
+    <!-- Header -->
+    <div class="flex justify-between items-center p-4">
+      <img src="" alt="CekinAja" class="h-10" />
+      <button id="toggleDark" class="bg-purple-800 text-white p-2 rounded-full">
+        🌙
+      </button>
+    </div>
 
-      <div class="a">
-        <form action="">
-          <h2>Cek Kesehatan</h2>
-          <div class="aa">
-            <input type="nama" required />
-            <label>Nama</label>
-          </div>
-          <div class="aa">
-            <input type="number" required />
-            <label>Usia</label>
-          </div>
+    <!-- Main -->
+    <main class="flex flex-col items-center px-4">
+      <!-- Box Input -->
+      <div
+        class="bg-cyan-400 border-4 border-black shadow-[4px_4px_0_0_black] p-6 w-full max-w-3xl rounded-lg mb-8"
+      >
+        <h2 class="text-lg font-bold mb-2">@ Username Instagram</h2>
+        <input
+          id="username"
+          type="text"
+          placeholder="@username"
+          class="w-full p-3 rounded border-2 border-black mb-4 text-lg"
+        />
+        <button
+          id="roastBtn"
+          class="bg-pink-500 text-black font-bold border-4 border-black shadow-[4px_4px_0_0_black] px-4 py-3 w-full text-lg flex justify-center items-center gap-2"
+        >
+          🔥 Roast! 🔥 →
+        </button>
+        <p id="errorMsg" class="text-red-600 font-bold mt-2 hidden">
+          Masukkan username yang valid!
+        </p>
+      </div>
 
-          <div class="cek">
-            <button type="submit">Cek</button>
-          </div>
-        </form>
+      <!-- Hasil Roast -->
+      <div
+        id="result"
+        class="hidden bg-yellow-300 border-4 border-black shadow-[4px_4px_0_0_black] p-4 w-full max-w-2xl mb-6 text-center text-lg font-bold rounded"
+      >
+        <!-- Roast akan muncul di sini -->
+      </div>
 
-        <!-- Popup Box -->
-        <div class="popup" id="popup">
-          <div class="popup-content">
-            <p id="popup-text"></p>
-            <button onclick="closePopup()">Oke</button>
-          </div>
+      <!-- Fitur Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl">
+        <div
+          class="bg-purple-500 border-4 border-black shadow-[4px_4px_0_0_black] text-center p-4 rounded"
+        >
+          <div class="text-3xl">⚡</div>
+          <h3 class="font-bold mt-2">Super Cepat</h3>
+          <p class="text-sm mt-1">Hasil roasting dalam hitungan detik</p>
+        </div>
+        <div
+          class="bg-green-500 border-4 border-black shadow-[4px_4px_0_0_black] text-center p-4 rounded"
+        >
+          <div class="text-3xl">🔥</div>
+          <h3 class="font-bold mt-2">Roast Pedas</h3>
+          <p class="text-sm mt-1">Dijamin bikin mental terbakar</p>
+        </div>
+        <div
+          class="bg-orange-500 border-4 border-black shadow-[4px_4px_0_0_black] text-center p-4 rounded"
+        >
+          <div class="text-3xl">✨</div>
+          <h3 class="font-bold mt-2">AI Powered</h3>
+          <p class="text-sm mt-1">Dibuat dengan teknologi AI terbaru</p>
         </div>
       </div>
-    </section>
 
-    <script src="script.js"></script>
+      <!-- Footer -->
+      <footer
+        class="mt-8 text-sm text-left w-full px-4 pb-4 text-black dark:text-white"
+      >
+        by <b>danillkifly</b>
+        <div class="float-right">
+          <img
+            src="https://www.gstatic.com/recaptcha/api2/logo_48.png"
+            class="h-6 inline"
+            alt="Recaptcha"
+          />
+        </div>
+      </footer>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+      const toggleBtn = document.getElementById("toggleDark");
+      const body = document.getElementById("body");
+      const roastBtn = document.getElementById("roastBtn");
+      const usernameInput = document.getElementById("username");
+      const errorMsg = document.getElementById("errorMsg");
+      const resultBox = document.getElementById("result");
+
+      const roasts = [
+        "Wajah kamu cocok jadi emoji '🤡'.",
+        "Kalo pintar itu keren, kamu kayaknya pending dulu deh.",
+        "Kamu tuh kayak WiFi di gunung, nggak nyambung.",
+        "Instagram kamu kayak museum, sepi tapi banyak drama.",
+        "Kalau roasting itu seni, kamu inspirasinya.",
+        "Mikir dulu sebelum posting. Atau jangan mikir sama sekali, biar nggak capek.",
+      ];
+
+      toggleBtn.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+      });
+
+      roastBtn.addEventListener("click", () => {
+        const username = usernameInput.value.trim();
+        if (!username || !/^@?[a-zA-Z0-9._]{3,}$/.test(username)) {
+          errorMsg.classList.remove("hidden");
+          resultBox.classList.add("hidden");
+          return;
+        }
+        errorMsg.classList.add("hidden");
+        const roast = roasts[Math.floor(Math.random() * roasts.length)];
+        resultBox.textContent = `@${username.replace("@", "")} — ${roast}`;
+        resultBox.classList.remove("hidden");
+      });
+    </script>
   </body>
 </html>
