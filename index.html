@@ -13,24 +13,59 @@
       body {
         font-family: "Space Mono", monospace;
         transition: background-color 0.3s, color 0.3s;
-        background-image: linear-gradient(
-          45deg,
-          transparent 74%,
-          rgba(0, 0, 0, 0.1) 75%
-        );
-        background-size: 50px 50px;
+        background: linear-gradient(-45deg, #c1ea50, #9b5de5, #f15bb5, #f30303);
+        background-size: 400% 400%;
+        animation: gradientMove 10s ease infinite;
       }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
       .dark-mode {
         background-color: #1a1a1a;
         color: white;
+        background: linear-gradient(-45deg, #1f1d1d, #7e0404, #5c2d2d, #817d7d);
+        background-size: 400% 400%;
+        animation: gradientMove 15s ease infinite;
+      }
+
+      .dark-mode {
+        color: white;
+      }
+
+      .dark-mode h1,
+      .dark-mode h2,
+      .dark-mode h3,
+      .dark-mode p,
+      .dark-mode div,
+      .dark-mode button,
+      .dark-mode input,
+      .dark-mode footer {
+        color: white;
+      }
+
+      .dark-mode input {
+        background-color: #302c2c;
       }
     </style>
   </head>
   <body id="body" class="text-black">
     <!-- Header -->
     <div class="flex justify-between items-center p-4">
-      <img src="" alt="CekinAja" class="h-10" />
-      <button id="toggleDark" class="bg-purple-800 text-white p-2 rounded-full">
+      <div class="h-10">CekinAja</div>
+      <button
+        id="toggleDark"
+        class="bg-purple-800 text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl"
+      >
         🌙
       </button>
     </div>
@@ -38,8 +73,13 @@
     <!-- Main -->
     <main class="flex flex-col items-center px-4">
       <!-- Box Input -->
+      <div class="font-black text-5xl mb-8">CekinAja</div>
+      <div class="text-center mb-4">
+        Roasting and check your healt from username instagaram, are you ready to
+        face mental?
+      </div>
       <div
-        class="bg-cyan-400 border-4 border-black shadow-[4px_4px_0_0_black] p-6 w-full max-w-3xl rounded-lg mb-8"
+        class="bg-cyan-400 border-4 border-black shadow-[4px_4px_0_0_black] p-6 w-full max-w-4xl rounded-lg mb-8"
       >
         <h2 class="text-lg font-bold mb-2">@ Username Instagram</h2>
         <input
@@ -50,7 +90,7 @@
         />
         <button
           id="roastBtn"
-          class="bg-pink-500 text-black font-bold border-4 border-black shadow-[4px_4px_0_0_black] px-4 py-3 w-full text-lg flex justify-center items-center gap-2"
+          class="bg-pink-500 text-black font-bold border-4 border-black shadow-[4px_4px_0_0_black] px-4 py-3 w-full text-lg flex justify-center items-center gap-2 hover:shadow-[6px_6px_0_0_black] hover:-translate-x-1 hover:-translate-y-1"
         >
           🔥 Roast! 🔥 →
         </button>
@@ -127,6 +167,13 @@
 
       toggleBtn.addEventListener("click", () => {
         body.classList.toggle("dark-mode");
+
+        // Ganti emoji saat dark mode aktif
+        if (body.classList.contains("dark-mode")) {
+          toggleBtn.textContent = "☀️"; // Tampilkan matahari
+        } else {
+          toggleBtn.textContent = "🌙"; // Tampilkan bulan
+        }
       });
 
       roastBtn.addEventListener("click", () => {
